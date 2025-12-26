@@ -1,10 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Dashboard } from './dashboard';
 import { AuthService } from '../../core/services/auth.service';
 
 describe('Dashboard', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  let component: Dashboard;
+  let fixture: ComponentFixture<Dashboard>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [Dashboard],
       providers: [
         {
@@ -14,13 +17,18 @@ describe('Dashboard', () => {
           },
         },
       ],
-    });
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(Dashboard);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should create dashboard component', () => {
-    const fixture = TestBed.createComponent(Dashboard);
-    const component = fixture.componentInstance;
-
+  it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return logged-in user email', () => {
+    expect(component.userEmail()).toBe('test@test.com');
   });
 });

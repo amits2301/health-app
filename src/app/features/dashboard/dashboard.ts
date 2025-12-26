@@ -10,5 +10,5 @@ import { AuthService } from '../../core/services/auth.service';
 export class Dashboard {
   private authService = inject(AuthService);
 
-  protected readonly userEmail = signal(this.authService.getUserEmail());
+  readonly userEmail = signal(this.authService.getUserEmail());
 }

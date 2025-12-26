@@ -5,18 +5,30 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email" />
-        @if (form.controls.email.invalid ) {
-        <mat-error> Enter a valid email </mat-error>
-        }
+        <input matInput type="email" formControlName="email" />
+
+        @if ( getFormValidation.email.touched || getFormValidation.email.dirty ) { @if
+        (getFormValidation.email.errors?.['required']) {
+        <mat-error>Email is required</mat-error>
+        } @if (getFormValidation.email.errors?.['email']) {
+        <mat-error>Enter a valid email address</mat-error>
+        } }
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password" type="password" />
-        <mat-error *ngIf="form.controls.password.invalid">
-          Password must be at least 6 characters
+        <input matInput type="password" formControlName="password" />
+
+        @if ( getFormValidation.password.touched || getFormValidation.password.dirty ) { @if
+        (getFormValidation.password.errors?.['required']) {
+        <mat-error>Password is required</mat-error>
+        } @if (getFormValidation.password.errors?.['minlength']) {
+        <mat-error>
+          Password must be at least
+          {{ getFormValidation.password.errors?.['minlength'].requiredLength }}
+          characters
         </mat-error>
+        } }
       </mat-form-field>
 
       @if (error) {

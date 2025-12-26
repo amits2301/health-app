@@ -1,59 +1,210 @@
 # HealthApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+HealthApp is a simple Angular application built as part of an Angular code test.
+The application demonstrates authentication, protected routes, API integration, state management using Signal Store, and modern Angular (v21) best practices.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🛠 Tech Stack
+
+- **Angular 21 (Standalone APIs)**
+- **Angular Material** for UI components
+- **RxJS** for async operations
+- **NgRx Signals (Signal Store)** for state management
+- **ngx-cookie-service** for authentication using cookies
+- **Angular 21 Test Runner** for unit testing
+
+---
+
+## 🧩 Prerequisites
+
+The project was developed and tested using the following versions:
+
+```bash
+Node.js: v25.1.0
+npm:     v11.6.2
+```
+
+> ⚠️ Using the same or compatible versions is recommended to avoid dependency issues.
+
+---
+
+## 📦 Setup Instructions
+
+### 1️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 2️⃣ Run development server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open your browser at:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The application reloads automatically on source changes.
 
-```bash
-ng generate --help
-```
+---
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 3️⃣ Run unit tests
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+All tests are written using modern Angular testing APIs (no deprecated testing modules or Jasmine globals).
 
-For end-to-end (e2e) testing, run:
+---
+
+### 4️⃣ Build the application
 
 ```bash
-ng e2e
+ng build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The production build artifacts are generated in the `dist/` directory.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🔐 Application Features
+
+### Authentication
+
+- Login using email and password
+- Authentication token stored in **cookies**
+- Protected routes using **functional route guards**
+- Logout clears cookies and redirects to login
+
+### Dashboard
+
+- Displays a welcome message with the logged-in user’s email
+- Provides navigation to the items list
+- Logout option available
+
+### Items List
+
+- Fetches data from `/api/items`
+- Uses **Signal Store** for state management
+- Handles loading and error states
+- Displays data using Angular Material components
+
+---
+
+## 🏗 Architecture & Approach
+
+### Folder Structure (Feature-Based)
+
+```
+src/
+ ├── app/
+ │   ├── core/                # Core services, guards, interceptors
+ │   ├── features/            # Feature modules (auth, dashboard, items)
+ │   ├── app.routes.ts        # Application routes
+ │   └── app.ts               # Root component
+```
+
+---
+
+### Key Design Decisions
+
+#### ✅ Standalone Components
+
+- No NgModules
+- Uses Angular’s latest standalone APIs for simplicity and performance
+
+#### ✅ Feature-Based Architecture
+
+- Each feature is self-contained
+- Improves readability, scalability, and maintainability
+
+#### ✅ State Management (Signal Store)
+
+- Items list uses NgRx **Signal Store**
+- Handles loading, success, and error states cleanly
+- Avoids unnecessary global state
+
+#### ✅ Authentication via Cookies
+
+- Authentication token stored using `ngx-cookie-service`
+- Guards protect dashboard and items routes
+- Public routes are blocked for authenticated users
+
+#### ✅ HTTP & Loading Handling
+
+- HTTP calls managed through services
+- Global loading state handled via interceptor + loading service
+- Ability to skip loader using `HttpContext`
+
+#### ✅ Modern Testing Strategy
+
+- Uses Angular 21 test runner
+- No deprecated APIs (`HttpClientTestingModule`, `RouterTestingModule`)
+- No Jasmine globals (`spyOn`, `toContainEqual`)
+- Functional guards tested with `runInInjectionContext`
+- Tests focus on **behavior**, not UI internals
+
+---
+
+## 🧪 Unit Test Coverage
+
+Unit tests are included for:
+
+- Authentication service
+- Route guards
+- Login component
+- Dashboard component
+- Items service and Signal Store
+- Layout and app bootstrap components
+
+---
+
+## 📝 Notes
+
+- Mock APIs can be easily replaced with real backend services
+- Environment-specific base URLs are managed via Angular environments
+- The application is designed to be extendable and production-ready
+
+---
+
+## 📝Task Requirements Checklist
+
+- Angular latest version
+
+- Login with API integration
+
+- Authentication using cookies
+
+- Protected routes
+
+- Dashboard with user info
+
+- Items list with API integration
+
+- Signal Store for state management
+
+- Loading and error handling
+
+- Unit tests
+
+- README with setup & architecture explanation
+
+---
+
+## 👤 Author
+
+**Amit Shahare**
+
+---
+
+### 🎯 Final Note
+
+This project demonstrates clean architecture, modern Angular patterns, and best practices suitable for production-grade applications.

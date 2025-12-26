@@ -37,6 +37,10 @@ export class Login {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
+  
+  get getFormValidation() {
+    return this.form.controls;
+  }
 
   submit(): void {
     if (this.form.invalid) {
@@ -48,12 +52,8 @@ export class Login {
     this.error = null;
 
     const { email, password } = this.form.getRawValue();
-    const payload = {
-      email,
-      password,
-    };
 
-    this.authService.login(payload).subscribe({
+    this.authService.login({ email, password }).subscribe({
       next: () => {
         this.loading = false;
         this.router.navigate(['/dashboard']);
