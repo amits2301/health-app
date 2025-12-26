@@ -6,7 +6,6 @@ import { ItemsStore } from './data-access/store/items.store';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
-  standalone: true,
   selector: 'app-items',
   imports: [CommonModule, MatListModule],
   providers: [ItemsStore],

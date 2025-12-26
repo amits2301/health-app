@@ -12,7 +12,6 @@ import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -37,7 +36,7 @@ export class Login {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
-  
+
   get getFormValidation() {
     return this.form.controls;
   }
