@@ -1,0 +1,17 @@
+<mat-toolbar color="" class="toolbar">
+  <span class="app-title">Health App</span>
+
+  <nav class="nav-links">
+    <a mat-button routerLink="/dashboard" routerLinkActive="active-link"> Dashboard </a>
+
+    <a mat-button routerLink="/items" routerLinkActive="active-link"> Items </a>
+  </nav>
+
+  <span class="spacer"></span>
+
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

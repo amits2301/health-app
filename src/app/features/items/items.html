@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center align-items-center">
+  @switch (loadingState().status) { @case ('error') {
+  <div class="error">
+    {{ loadingState().error }}
+  </div>
+  } @case ('loaded') {
+  <mat-list>
+    @for (item of items(); track item.id) {
+    <mat-list-item>
+      <span matListItemTitle>{{ item.name }}</span>
+      <span matListItemLine>{{ item.description }}</span>
+    </mat-list-item>
+    }
+  </mat-list>
+  } }
+</div>

@@ -1,0 +1,42 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <h2 class="title">Login</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+        @if (form.controls.email.invalid ) {
+        <mat-error> Enter a valid email </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+        <mat-error *ngIf="form.controls.password.invalid">
+          Password must be at least 6 characters
+        </mat-error>
+      </mat-form-field>
+
+      @if (error) {
+      <div class="error">{{ error }}</div>
+      }
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width"
+        type="submit"
+        [disabled]="loading"
+      >
+        @if (loading ) {
+        <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+        } @else{
+        <ng-container>Login</ng-container>
+
+        }
+      </button>
+    </form>
+  </mat-card>
+</div>
