@@ -199,6 +199,10 @@ Unit tests are included for:
 
 ---
 
+## For login we can use below credentials
+ - email :  amits@yopmail.com
+ - password: Healthapp
+
 ## 👤 Author
 
 **Amit Shahare**
