@@ -2,8 +2,8 @@ import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { environment } from '../../../environments/environment';
 import { SKIP_LOADING } from '../interceptors/loading.context';
+import { LoginRequest, LoginResponse } from '../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -13,9 +13,9 @@ export class AuthService {
   private http = inject(HttpClient);
   private cookies = inject(CookieService);
 
-  login(payload: { email: string; password: string }) {
+  login(payload: LoginRequest) {
     return this.http
-      .post<any>('/login', payload, {
+      .post<LoginResponse>('/login', payload, {
         context: new HttpContext().set(SKIP_LOADING, true),
       })
       .pipe(
